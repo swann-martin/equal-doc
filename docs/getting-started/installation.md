@@ -3,6 +3,8 @@
 ## 1. Install
 
 ### Option A - Using Docker
+<details>
+<summary>Click to open</summary>
 
 #### 1. Install Docker
 
@@ -70,10 +72,13 @@ Some editors use extensions that able you to use a [Docker container](https://do
 !!! note "Using VS Code"
     **"VS Code"** has the extension [Remote - Containers](https://code.visualstudio.com/docs/remote/containers) , where you may work as if everything were running locally on your machine, except now they are inside a container.
 
-
-
+</details>
 
 ### Option B - Manual installation
+
+<details>
+
+<summary>Click to Open</summary>
 
 #### Requirements
 
@@ -213,11 +218,9 @@ You should get the simple output "hello universe". If not, review carefully the 
 #### 4. File permissions
 Make sure that the `/var/www/` directory and its content have `www-data:www-data` as owner.:
 
-
+</details>
 
 ## 2. Configure
-
-
 
 #### Backend config
 
@@ -325,7 +328,7 @@ Example:
 
 
 
-## 3. Make first API requests
+## 3. Make your first API requests
 
 A list of routes related to default API is defined in `/config/routing/99-default.json`.
 Here below are some examples of HTTP calls and their responses (in JSON) that you can us to test your installation:
