@@ -1,5 +1,9 @@
 {
+  "name": "equaldocs",
+  "version": "1.0.0",
+  "type": "module",
   "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "1.0.0-rc.31"
   },
   "scripts": {

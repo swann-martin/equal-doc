@@ -1,5 +1,4 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
@@ -11,8 +10,8 @@ hero:
       text: Get Started
       link: /getting-started/installation
     - theme: alt
-      text: Examples
-      link: /api-examples
+      text: Quick Start
+      link: /getting-started/quick-start
   image:
     src: /assets/img/equal_logo.svg
     alt: eQual
@@ -25,7 +24,8 @@ features:
     title: Low Code 
     details: Use Workbench to create and configure quickly your backend 
   - icon: 🔌
-    title: Http native
+    title: Instant APIs Without Code
     details: eQual can seamlessly be used in both CLI or HTTP context
+
 ---
 
