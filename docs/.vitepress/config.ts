@@ -1,7 +1,4 @@
-import { defineConfig, type DefaultTheme } from "vitepress";
-
-// const require = createRequire(import.meta.url);
-// const pkg = require("vitepress/package.json");
+import { defineConfig, type DefaultTheme, } from 'vitepress';
 
 export default defineConfig({
   lang: "en-US",
@@ -13,6 +10,9 @@ export default defineConfig({
   cleanUrls: true,
 
   markdown: {
+    languageAlias: {
+      'svg': 'html',
+    },
     math: true,
     codeTransformers: [
       // We use `[!!code` in demo to prevent transformation, here we revert it back.
@@ -34,13 +34,12 @@ export default defineConfig({
   /* prettier-ignore */
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/assets/img/equal_logo.svg' }],
-    ['link', { rel: 'icon', type: 'image/png', href: '/vitepress-logo-mini.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: 'https://dev.equal.run/assets/img/eq_logo.png' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { name: 'og:type', content: 'website' }],
     ['meta', { name: 'og:locale', content: 'en' }],
     ['meta', { name: 'og:site_name', content: 'eQual' }],
     ['meta', { name: 'og:image', content: 'https://dev.equal.run/assets/img/eq_logo.png' }],
-    // ['script', { src: 'https://cdn.usefathom.com/script.js', 'data-site': 'AZBRSFGG', 'data-spa': 'auto', defer: '' }]
   ],
 
   themeConfig: {
@@ -61,14 +60,27 @@ export default defineConfig({
       "/advanced/": { base: "/advanced/", items: sidebarAdvanced() },
     },
 
-    // search: {
-    //   provider: "algolia",
-    //   options: {
-    //     appId: "8J64VVRP8K",
-    //     apiKey: "a18e2f4cc5665f6602c5631fd868adfd",
-    //     indexName: "vitepress",
-    //   },
-    // },
+    search: {
+      provider: 'local',
+      options: {
+        miniSearch: {
+          /**
+           * @type {Pick<import('minisearch').Options, 'extractField' | 'tokenize' | 'processTerm'>}
+           */
+          options: {
+            /* ... */
+          },
+          /**
+           * @type {import('minisearch').SearchOptions}
+           * @default
+           * { fuzzy: 0.2, prefix: true, boost: { title: 4, text: 2, titles: 1 } }
+           */
+          searchOptions: {
+            /* ... */
+          }
+        }
+      }
+    },
 
     socialLinks: [
       { icon: "github", link: "https://github.com/equalframework" },
@@ -92,16 +104,16 @@ function nav(): DefaultTheme.NavItem[] {
       link: "/howtos-and-examples/generic-cheat-sheet.md",
     },
     {
-      // text: pkg.version,
+      text: 'Contribute',
       items: [
-        {
-          text: "Changelog",
-          link: "https://github.com/equalframework/equal/blob/master/CHANGELOG.md",
-        },
         {
           text: "Contributing",
           link: "https://github.com/equalframework/equal/blob/master/CONTRIBUTING.md",
         },
+        {
+          text: "Changelog",
+          link: "https://github.com/equalframework/equal/blob/master/CHANGELOG.md",
+        }
       ],
     },
   ];
@@ -112,18 +124,18 @@ function sidebarGettingStarted(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Introduction',
-      base: "/getting-started/",      
+      base: "/getting-started/",
       collapsed: false,
       items: [
         { text: 'Why eQual?', link: 'introduction' },
         { text: 'Getting Started', link: 'installation' },
-        { text: 'Configuration', link:  'configuration' },
+        { text: 'Configuration', link: 'configuration' },
         { text: 'Deploy', link: 'deployment' }
       ]
     },
     {
       text: 'Examples',
-      base: "/howtos-and-examples/",      
+      base: "/howtos-and-examples/",
       collapsed: false,
       items: [
         { text: 'Generic', link: 'generic-cheat-sheet' },
@@ -207,10 +219,54 @@ function sidebarUsage(): DefaultTheme.SidebarItem[] {
 
 function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
   return [
+    { text: "Getting Started", base: "/getting-started/", link: "built-in-tools" },
     {
-      text: "Generic cheat sheet",
-      base: "/howtos-and-examples/",
-      link: "generic-cheat-sheet",
+      text: "Usage",
+      collapsed: true,
+      items: [
+        { text: "Built-in Tools", link: "built-in-tools" },
+        { text: "Directory Structure", link: "directory-structure" },
+        { text: "Packages", link: "packages" },
+        { text: "Model Definition", link: "model-definition" },
+        { text: "Actions", link: "actions" },
+        { text: "Controllers", link: "controllers" },
+        { text: "CRUD", link: "crud" },
+        { text: "Searching", link: "searching" },
+        { text: "Validation", link: "validation" },
+        { text: "Routing", link: "routing" },
+        { text: "Views", link: "views" },
+        { text: "i18n", link: "i18n" },
+        { text: "Error Handling", link: "error-handling" },
+        { text: "Debugging", link: "debugging" },
+        { text: "Testing", link: "testing" },
+      ],
+    },
+    {
+      text: "Low Code & Tools",
+      base: "/low-code/",
+      collapsed: true,
+      items: [
+        {
+          text: "shared libraries",
+          link: "shared-lib",
+        },
+        { text: "eQ UI", link: "equi" },
+        { text: "workbench", link: "low-code" },
+      ],
+    },
+    {
+      text: "Architecture",
+      base: "/architecture-concepts/",
+      collapsed: true,
+      items: [
+        { text: "Collections", link: "collections" },
+        { text: "Http Native", link: "http-native" },
+        {
+          text: "Dependency Injection",
+          link: "dependency-injection",
+        },
+        { text: "Domains", link: "domains" },
+      ],
     },
     {
       text: "Advanced",
@@ -224,25 +280,6 @@ function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
         { text: "CI/CD", link: "ci-cd" },
         { text: "External Libraries", link: "external-libraries" },
         { text: "CLI", link: "console-cli" },
-        // {
-        //   text: "Default Theme",
-        //   base: "/reference/default-theme-",
-        //   items: [
-        //     { text: "Overview", link: "config" },
-        //     { text: "Nav", link: "nav" },
-        //     { text: "Sidebar", link: "sidebar" },
-        //     { text: "Home Page", link: "home-page" },
-        //     { text: "Footer", link: "footer" },
-        //     { text: "Layout", link: "layout" },
-        //     { text: "Badge", link: "badge" },
-        //     { text: "Team Page", link: "team-page" },
-        //     { text: "Prev / Next Links", link: "prev-next-links" },
-        //     { text: "Edit Link", link: "edit-link" },
-        //     { text: "Last Updated Timestamp", link: "last-updated" },
-        //     { text: "Search", link: "search" },
-        //     { text: "Carbon Ads", link: "carbon-ads" },
-        //   ],
-        // },
       ],
     },
   ];
