@@ -91,7 +91,7 @@ To avoid this, we use a data set that we initiate everytime we want to run tests
 
 For example, instead of
 
-```mysql
+```sql
 INSERT INTO `my_table` (`field1`, `field2`)
 VALUES
 ('value1','value1'),
@@ -101,7 +101,7 @@ VALUES
 
 Write it like that
 
-```mysql
+```sql
 INSERT INTO `my_table` (`field1`, `field2`) VALUES ('value1','value1');
 INSERT INTO `my_table` (`field1`, `field2`) VALUES ('value2','value2');
 INSERT INTO `my_table` (`field1`, `field2`) VALUES ('value3','value3');

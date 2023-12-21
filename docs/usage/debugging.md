@@ -9,10 +9,7 @@ To help you with human-readable data, eQual comes with its own UI debug console 
 
 To access it from the browser:
 
-```url
 http://equal.local/console.php
-```
-
 
 There you can find informations about your error, here is an **example** :
 
