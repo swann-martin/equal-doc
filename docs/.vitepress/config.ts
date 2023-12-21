@@ -1,6 +1,8 @@
 import { defineConfig, type DefaultTheme, } from 'vitepress';
 
+
 export default defineConfig({
+  base: '/equal-doc/', // to change for deployment on doc.equal.run https://vitepress.dev/reference/site-config#base
   lang: "en-US",
   title: "eQual",
   description:
